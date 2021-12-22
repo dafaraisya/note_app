@@ -22,7 +22,9 @@ class GoogleSignInProvider extends ChangeNotifier {
         idToken: googleAuth.idToken
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      UserCredential authResult = await FirebaseAuth.instance.signInWithCredential(credential);
+      User user = authResult.user!;
+      return user;
     } catch (e) {
       print(e.toString());
     }

@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_app/constants.dart';
+// import 'package:note_app/constants.dart';
 import 'package:note_app/provider/GoogleSigIn.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class HeaderHome extends StatefulWidget implements PreferredSizeWidget {
 class _HeaderHomeState extends State<HeaderHome> {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    // final user = FirebaseAuth.instance.currentUser!;
     return PreferredSize(
         preferredSize: Size.fromHeight(70.0),
         child: Container(
@@ -28,22 +29,34 @@ class _HeaderHomeState extends State<HeaderHome> {
               Row(
                 children: [
                   SizedBox(width: 20,),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(user.photoURL!),
-                      )
+                  Expanded(
+                    child: Text(
+                      'Notes',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Colors.white
+                      ),
                     ),
                   ),
-                  SizedBox(width: 20,),
-                  Text(
-                    user.displayName!,
-                    style: kSubHeaderText,
-                  ),
-                  SizedBox(width: 100,),
+                  // Container(
+                  //   width: 40,
+                  //   height: 40,
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(30),
+                  //     image: DecorationImage(
+                  //       image: NetworkImage(user.photoURL!),
+                  //     )
+                  //   ),
+                  // ),
+                  // SizedBox(width: 20,),
+                  // Expanded(
+                  //   child: Text(
+                  //     user.displayName!,
+                  //     style: kSubHeaderText,
+                  //   ),
+                  // ),
+                  // SizedBox(width: 100,),
                   IconButton(
                     onPressed: () {
                       final provider = Provider.of<GoogleSignInProvider>(context,listen: false);

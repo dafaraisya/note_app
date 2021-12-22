@@ -11,9 +11,32 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
+
+  bool loading = true;
+
+  Future showLoading() async {
+    await Future.delayed(Duration(seconds: 1))
+    .then((value) => {
+      setState(() {
+        loading = false;
+      })
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    showLoading();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Container(
+      color: Colors.grey[900],
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    ) : Scaffold(
       appBar: HeaderHome(),
       body: Container(
         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
